@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mahmoud Samak — Digital Product Builder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Barlow+Condensed:wght@700;800;900&family=Crimson+Pro:ital,wght@0,300;1,300&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #08070d;
+    --bg2: #0f0e16;
+    --bg3: #16141f;
+    --card: #100f18;
+    --border: rgba(255,255,255,0.07);
+    --pink: #f0165a;
+    --pink2: #ff4d85;
+    --text: #e8e3f0;
+    --muted: #6a6484;
+    --radius: 18px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* CURSOR */
+  .cursor { width: 10px; height: 10px; background: var(--pink); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 10001; transform: translate(-50%,-50%); transition: width 0.2s, height 0.2s; mix-blend-mode: difference; }
+  .cursor-ring { width: 36px; height: 36px; border: 1px solid rgba(240,22,90,0.5); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 10000; transform: translate(-50%,-50%); transition: all 0.12s ease; }
+  body:has(a:hover) .cursor, body:has(button:hover) .cursor, body:has(.slide:hover) .cursor, body:has(.thumb:hover) .cursor { width: 18px; height: 18px; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 18px 50px; background: rgba(8,7,13,0.88); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.1rem; text-decoration: none; color: var(--text); letter-spacing: 0.1em; }
+  .nav-logo span { color: var(--pink); }
+  .nav-links { display: flex; gap: 30px; }
+  .nav-links a { color: var(--muted); font-size: 0.68rem; text-decoration: none; text-transform: uppercase; letter-spacing: 0.18em; transition: color 0.3s; }
+  .nav-links a:hover { color: var(--pink); }
+  .nav-cta { font-size: 0.68rem; text-transform: uppercase; color: #fff; background: var(--pink); padding: 9px 20px; border-radius: 4px; text-decoration: none; font-weight: 600; }
+
+  /* HERO */
+  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 130px 50px 80px; position: relative; }
+  .hero-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(4.5rem, 12vw, 10rem); line-height: 0.88; text-transform: uppercase; }
+  .hero-name .line2 { color: var(--pink); text-shadow: 0 0 30px rgba(240, 22, 90, 0.2); }
+  .hero-desc { font-size: 0.9rem; color: var(--muted); margin-top: 20px; max-width: 500px; line-height: 1.6; }
+
+  /* SECTION & CARDS */
+  .section { padding: 100px 50px; }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); gap: 40px; }
+  .project-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: transform 0.3s ease, border-color 0.3s; }
+  .project-card:hover { border-color: rgba(240, 22, 90, 0.3); transform: translateY(-5px); }
+
+  /* SLIDER */
+  .slider-wrap { position: relative; overflow: hidden; aspect-ratio: 16/9; cursor: pointer; background: #000; }
+  .slider-track { display: flex; transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); height: 100%; }
+  .slide { min-width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .slide img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+  .slide:hover img { transform: scale(1.05); }
+
+  .thumbs-row { display: flex; gap: 12px; padding: 15px; background: var(--bg2); overflow-x: auto; border-top: 1px solid var(--border); }
+  .thumb { width: 80px; height: 50px; border-radius: 6px; overflow: hidden; opacity: 0.4; border: 2px solid transparent; transition: 0.3s; flex-shrink: 0; cursor: pointer; }
+  .thumb.active { opacity: 1; border-color: var(--pink); }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+  .card-body { padding: 30px; }
+  .card-title { font-family: 'Barlow Condensed', sans-serif; font-size: 2.2rem; text-transform: uppercase; margin-bottom: 10px; color: var(--text); }
+  .card-desc { font-family: 'Crimson Pro', serif; font-style: italic; font-size: 1.1rem; color: var(--muted); margin-bottom: 20px; }
+
+  /* --- LIGHTBOX MODAL --- */
+  .lightbox {
+    position: fixed; inset: 0; background: rgba(4, 4, 8, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 9999; display: none; flex-direction: column;
+    align-items: center; justify-content: center; padding: 20px;
+  }
+  .lightbox.active { display: flex; }
+  
+  .lightbox-close { position: absolute; top: 30px; right: 30px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: white; width: 50px; height: 50px; border-radius: 50%; font-size: 1.5rem; cursor: pointer; z-index: 10002; transition: 0.3s; display: flex; align-items: center; justify-content: center; }
+  .lightbox-close:hover { background: var(--pink); border-color: var(--pink); }
+  
+  .lightbox-content { position: relative; width: 100%; height: 70vh; display: flex; align-items: center; justify-content: center; }
+  .lightbox-img { max-width: 90%; max-height: 100%; border-radius: 12px; box-shadow: 0 30px 60px rgba(0,0,0,0.8); object-fit: contain; }
+  
+  .lightbox-nav { position: absolute; width: 95%; display: flex; justify-content: space-between; pointer-events: none; z-index: 10003; }
+  .lightbox-nav button { pointer-events: auto; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: white; width: 60px; height: 60px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; transition: 0.3s; backdrop-filter: blur(5px); }
+  .lightbox-nav button:hover { background: var(--pink); border-color: var(--pink); transform: scale(1.1); }
+
+  .lightbox-thumbs { display: flex; gap: 12px; margin-top: 40px; overflow-x: auto; max-width: 90%; padding: 10px; scrollbar-width: none; }
+  .l-thumb { width: 90px; height: 60px; border-radius: 8px; opacity: 0.4; cursor: pointer; border: 2px solid transparent; flex-shrink: 0; transition: 0.3s; }
+  .l-thumb.active { opacity: 1; border-color: var(--pink); transform: translateY(-5px); }
+  .l-thumb img { width: 100%; height: 100%; object-fit: cover; border-radius: 6px; }
+
+  /* UTILS */
+  .fade-up { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .section { padding: 60px 20px; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .lightbox-nav { width: 100%; }
+    .lightbox-nav button { width: 45px; height: 45px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+  <div class="lightbox-content">
+    <div class="lightbox-nav">
+      <button onclick="changeLightboxSlide(-1)">&#10094;</button>
+      <button onclick="changeLightboxSlide(1)">&#10095;</button>
+    </div>
+    <img src="" class="lightbox-img" id="lightboxImg">
+  </div>
+  <div class="lightbox-thumbs" id="lightboxThumbs"></div>
+</div>
+
+<nav>
+  <a href="#" class="nav-logo">[<span>M.SAMAK</span>]</a>
+  <div class="nav-links">
+    <a href="#platforms">Platforms</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="mailto:mahmoudsamak940@gmail.com" class="nav-cta">Hire Me ↗</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1 class="hero-name fade-up">MAHMOUD <br><span class="line2">SAMAK</span></h1>
+    <p class="hero-desc fade-up">Architecting high-performance digital ecosystems. Specializing in real-time systems, mobile platforms, and social gaming infrastructure.</p>
+  </div>
+</section>
+
+<section class="section" id="platforms">
+  <div class="projects-grid">
+    
+    <div class="project-card fade-up">
+      <div class="slider-wrap" onclick="openLightbox('slider1')">
+        <div class="slider-track" id="slider1">
+          <div class="slide"><img src="img/family_app/Family icon.png"></div>
+          <div class="slide"><img src="img/family_app/Screenshot_20250913-055003.png"></div>
+          <div class="slide"><img src="img/family_app/Screenshot_20250913-054952.png"></div>
+          <div class="slide"><img src="img/family_app/Screenshot_20250913-055036.png"></div>
+          <div class="slide"><img src="img/family_app/Screenshot_20250913-055117.png"></div>
+        </div>
+      </div>
+      <div class="thumbs-row" id="thumbs1">
+        <div class="thumb active" onclick="goToSlide('slider1',0)"><img src="img/family_app/Family icon.png"></div>
+        <div class="thumb" onclick="goToSlide('slider1',1)"><img src="img/family_app/Screenshot_20250913-055003.png"></div>
+        <div class="thumb" onclick="goToSlide('slider1',2)"><img src="img/family_app/Screenshot_20250913-054952.png"></div>
+        <div class="thumb" onclick="goToSlide('slider1',3)"><img src="img/family_app/Screenshot_20250913-055036.png"></div>
+        <div class="thumb" onclick="goToSlide('slider1',4)"><img src="img/family_app/Screenshot_20250913-055117.png"></div>
+      </div>
+      <div class="card-body">
+        <h2 class="card-title">Golden Family</h2>
+        <p class="card-desc">Social commerce ecosystem with real-time voice integration and diamond-based economy.</p>
+      </div>
+    </div>
+
+    <div class="project-card fade-up" style="transition-delay: 0.2s;">
+      <div class="slider-wrap" onclick="openLightbox('slider2')">
+        <div class="slider-track" id="slider2">
+          <div class="slide"><img src="img/lodu/1.jpg"></div>
+          <div class="slide"><img src="img/lodu/5366112662405715110.jpg"></div>
+          <div class="slide"><img src="img/lodu/5366112662405715115.jpg"></div>
+          <div class="slide"><img src="img/lodu/5366112662405715116.jpg"></div>
+        </div>
+      </div>
+      <div class="thumbs-row" id="thumbs2">
+        <div class="thumb active" onclick="goToSlide('slider2',0)"><img src="img/lodu/1.jpg"></div>
+        <div class="thumb" onclick="goToSlide('slider2',1)"><img src="img/lodu/5366112662405715110.jpg"></div>
+        <div class="thumb" onclick="goToSlide('slider2',2)"><img src="img/lodu/5366112662405715115.jpg"></div>
+        <div class="thumb" onclick="goToSlide('slider2',3)"><img src="img/lodu/5366112662405715116.jpg"></div>
+      </div>
+      <div class="card-body">
+        <h2 class="card-title">IQLudo</h2>
+        <p class="card-desc">A competitive multiplayer gaming platform featuring Ludo, Chess, and Domino with live audio rooms.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  // CURSOR ANIMATION
+  const cursor = document.getElementById('cursor');
+  const cursorRing = document.getElementById('cursorRing');
+  document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px'; 
+    cursor.style.top = e.clientY + 'px';
+    setTimeout(() => { 
+      cursorRing.style.left = e.clientX + 'px'; 
+      cursorRing.style.top = e.clientY + 'px'; 
+    }, 40);
+  });
+
+  // SCROLL REVEAL
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // SLIDER LOGIC
+  const states = { 'slider1': 0, 'slider2': 0 };
+  function goToSlide(id, idx) {
+    states[id] = idx;
+    const track = document.getElementById(id);
+    track.style.transform = `translateX(-${idx * 100}%)`;
+    const thumbs = track.parentElement.nextElementSibling.children;
+    Array.from(thumbs).forEach((t, i) => t.classList.toggle('active', i === idx));
+  }
+
+  // LIGHTBOX LOGIC
+  let currentActiveSlider = '';
+  let currentLightboxIdx = 0;
+
+  function openLightbox(sliderId) {
+    currentActiveSlider = sliderId;
+    currentLightboxIdx = states[sliderId];
+    const lightbox = document.getElementById('lightbox');
+    const lThumbsContainer = document.getElementById('lightboxThumbs');
+    const track = document.getElementById(sliderId);
+    const slides = track.querySelectorAll('img');
+
+    lThumbsContainer.innerHTML = '';
+    slides.forEach((img, i) => {
+      const div = document.createElement('div');
+      div.className = `l-thumb ${i === currentLightboxIdx ? 'active' : ''}`;
+      div.onclick = (e) => { e.stopPropagation(); setLightboxSlide(i); };
+      div.innerHTML = `<img src="${img.src}">`;
+      lThumbsContainer.appendChild(div);
+    });
+
+    setLightboxSlide(currentLightboxIdx);
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden'; 
+  }
+
+  function setLightboxSlide(idx) {
+    const slides = document.getElementById(currentActiveSlider).querySelectorAll('img');
+    if (idx < 0) idx = slides.length - 1;
+    if (idx >= slides.length) idx = 0;
+    
+    currentLightboxIdx = idx;
+    const lbImg = document.getElementById('lightboxImg');
+    lbImg.style.opacity = '0';
+    setTimeout(() => {
+      lbImg.src = slides[idx].src;
+      lbImg.style.opacity = '1';
+    }, 150);
+    
+    const lThumbs = document.getElementById('lightboxThumbs').children;
+    Array.from(lThumbs).forEach((t, i) => {
+      t.classList.toggle('active', i === idx);
+      if(i === idx) t.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    });
+  }
+
+  function changeLightboxSlide(dir) {
+    setLightboxSlide(currentLightboxIdx + dir);
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowRight") changeLightboxSlide(1);
+    if (e.key === "ArrowLeft") changeLightboxSlide(-1);
+  });
+</script>
+
+</body>
+</html>

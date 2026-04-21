@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mahmoud Samak — Digital Product Builder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Barlow+Condensed:wght@700;800;900&family=Crimson+Pro:ital,wght@0,300;1,300&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- ═══════════════════════════════════════════
+     FULLSCREEN LIGHTBOX
+═══════════════════════════════════════════ -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <div class="lb-stage-glow"></div>
+
+  <!-- Top Bar -->
+  <div class="lb-topbar">
+    <div class="lb-project-name" id="lb-project-name">Project</div>
+    <div class="lb-counter">
+      <strong id="lb-cur">1</strong> / <span id="lb-total">1</span>
+    </div>
+    <button class="lb-close" id="lb-close" aria-label="Close lightbox">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+
+  <!-- Main Image Stage -->
+  <div class="lb-stage">
+    <button class="lb-nav lb-prev" id="lb-prev" aria-label="Previous image">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+
+    <div class="lb-img-wrap">
+      <img class="lb-img" id="lb-img" src="" alt="Project screenshot" />
+      <div class="lb-img-accent"></div>
+    </div>
+
+    <button class="lb-nav lb-next" id="lb-next" aria-label="Next image">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+
+    <!-- Keyboard hint -->
+    <div class="lb-keyhint">
+      <span class="key">← →</span>
+      <span class="key">ESC</span>
+    </div>
+  </div>
+
+  <!-- Thumbnail Strip -->
+  <div class="lb-thumbstrip">
+    <div class="lb-thumbs-inner" id="lb-thumbs"></div>
+  </div>
+</div>
+
+<nav>
+  <a href="#" class="nav-logo">[<span>M.SAMAK</span>]</a>
+  <div class="nav-links">
+    <a href="#platforms">Platforms</a>
+    <a href="#data-analysis">Data Analysis</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="/cdn-cgi/l/email-protection#047d6b7176446169656d682a676b69" class="nav-cta">Hire Me ↗</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="scanlines"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+
+  <div class="hero-content">
+    <div class="hero-status fade-up">
+      <span class="status-dot"></span>
+      Available for Projects · Egypt
+    </div>
+
+    <h1 class="hero-name fade-up">
+      <span class="line1">MAHMOUD</span>
+      <span class="line2">SAMAK</span>
+    </h1>
+
+    <div class="hero-tagline fade-up">Building Products, Systems, and Businesses.</div>
+
+    <p class="hero-desc fade-up">
+      I build end-to-end digital products — mobile apps, web platforms,<br/>
+      real-time systems, game experiences, and the infrastructure behind them.<br/>
+      From concept to launch, I work across product, engineering, design, and execution.
+    </p>
+
+    <div class="hero-ctas fade-up">
+      <a href="/cdn-cgi/l/email-protection#dfa6b0aaad9fbab2beb6b3f1bcb0b2" class="btn-primary">Start a Project</a>
+      <a href="#platforms" class="btn-outline">See Work ↓</a>
+      <a href="https://www.linkedin.com/in/mahmoudashrafsamak/" target="_blank" class="btn-outline">LinkedIn ↗</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="platforms">
+  <div class="section-header fade-up">
+    <div class="section-meta">
+      <div class="section-num">01 / Platforms</div>
+      <div class="section-title">Apps</div>
+    </div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="projects-grid">
+
+    <!-- CARD 1 -->
+    <div class="project-card fade-up">
+      <div class="card-glow"></div>
+      <div class="slider-wrap"
+           data-project="Golden Family"
+           data-images='[
+             "img/family_app/Family icon.png",
+             "img/family_app/Screenshot_20250913-055003.png",
+             "img/family_app/Screenshot_20250913-054952.png",
+             "img/family_app/Screenshot_20250913-055036.png",
+             "img/family_app/Screenshot_20250913-055117.png"
+           ]'
+           data-alts='["Golden Family Logo","E-Commerce Module","Voice Rooms","Dashboard","Admin Panel"]'>
+        <div class="slider-track" id="slider1">
+          <div class="slide"><img src="img/family_app/Family icon.png" alt="Golden Family Logo" /></div>
+          <div class="slide"><img src="img/family_app/Screenshot_20250913-055003.png" alt="E-Commerce Module" /></div>
+          <div class="slide"><img src="img/family_app/Screenshot_20250913-054952.png" alt="Voice Rooms" /></div>
+          <div class="slide"><img src="img/family_app/Screenshot_20250913-055036.png" alt="Dashboard" /></div>
+          <div class="slide"><img src="img/family_app/Screenshot_20250913-055117.png" alt="Admin Panel" /></div>
+        </div>
+        <div class="slider-expand-hint" onclick="openLightbox(this.closest('.slider-wrap'))">
+          <div class="expand-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3"/></svg>
+          </div>
+        </div>
+        <button class="slider-btn prev" onclick="event.stopPropagation(); slide('slider1','dots1','thumbs1',-1)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg></button>
+        <button class="slider-btn next" onclick="event.stopPropagation(); slide('slider1','dots1','thumbs1',1)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>
+        <div class="slider-dots" id="dots1">
+          <div class="dot active" onclick="goToSlide('slider1','dots1','thumbs1',0)"></div>
+          <div class="dot" onclick="goToSlide('slider1','dots1','thumbs1',1)"></div>
+          <div class="dot" onclick="goToSlide('slider1','dots1','thumbs1',2)"></div>
+          <div class="dot" onclick="goToSlide('slider1','dots1','thumbs1',3)"></div>
+          <div class="dot" onclick="goToSlide('slider1','dots1','thumbs1',4)"></div>
+        </div>
+      </div>
+      <div class="thumbs-row" id="thumbs1">
+        <div class="thumb active" onclick="goToSlide('slider1','dots1','thumbs1',0)"><img src="img/family_app/Family icon.png" alt="Thumb 1" /></div>
+        <div class="thumb" onclick="goToSlide('slider1','dots1','thumbs1',1)"><img src="img/family_app/Screenshot_20250913-055003.png" alt="Thumb 2" /></div>
+        <div class="thumb" onclick="goToSlide('slider1','dots1','thumbs1',2)"><img src="img/family_app/Screenshot_20250913-054952.png" alt="Thumb 3" /></div>
+        <div class="thumb" onclick="goToSlide('slider1','dots1','thumbs1',3)"><img src="img/family_app/Screenshot_20250913-055036.png" alt="Thumb 4" /></div>
+        <div class="thumb" onclick="goToSlide('slider1','dots1','thumbs1',4)"><img src="img/family_app/Screenshot_20250913-055117.png" alt="Thumb 5" /></div>
+      </div>
+      <div class="card-body">
+        <div class="card-tags">
+          <span class="card-tag">iOS</span>
+          <span class="card-tag">Android</span>
+          <span class="card-tag gold-tag">Full Platform</span>
+        </div>
+        <h2 class="card-title">Golden Family</h2>
+        <p class="card-desc">A complete digital ecosystem — e-commerce, discount cards, voice rooms, gifts economy, business pages, affiliate system, and a real-time social layer, all in one platform.</p>
+        <ul class="card-features">
+          <li>Voice rooms with gifts &amp; diamond economy</li>
+          <li>Multi-vendor e-commerce + order tracking</li>
+          <li>Smart discount card system</li>
+          <li>Affiliate &amp; earnings network</li>
+          <li>Private servers · AES encryption · Full admin</li>
+        </ul>
+        <div class="card-footer">
+          <a href="https://play.google.com/store/apps/details?id=com.stardom.golden_3a2la" target="_blank" class="view-link">
+            View on Play Store
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="project-card fade-up" style="transition-delay: 100ms;">
+      <div class="card-glow"></div>
+      <div class="slider-wrap"
+           data-project="IQLudo"
+           data-images='[
+             "img/lodu/1.jpg",
+             "img/lodu/5366112662405715110.jpg",
+             "img/lodu/5366112662405715115.jpg",
+             "img/lodu/5366112662405715116.jpg"
+           ]'
+           data-alts='["IQLudo Preview","Ludo Chess Domino","Voice Rooms","Diamond Economy"]'>
+        <div class="slider-track" id="slider2">
+          <div class="slide"><img src="img/lodu/1.jpg" alt="IQLudo Preview" /></div>
+          <div class="slide"><img src="img/lodu/5366112662405715110.jpg" alt="Ludo Chess Domino" /></div>
+          <div class="slide"><img src="img/lodu/5366112662405715115.jpg" alt="Voice Rooms" /></div>
+          <div class="slide"><img src="img/lodu/5366112662405715116.jpg" alt="Diamond Economy" /></div>
+        </div>
+        <div class="slider-expand-hint" onclick="openLightbox(this.closest('.slider-wrap'))">
+          <div class="expand-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3"/></svg>
+          </div>
+        </div>
+        <button class="slider-btn prev" onclick="event.stopPropagation(); slide('slider2','dots2','thumbs2',-1)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg></button>
+        <button class="slider-btn next" onclick="event.stopPropagation(); slide('slider2','dots2','thumbs2',1)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>
+        <div class="slider-dots" id="dots2">
+          <div class="dot active" onclick="goToSlide('slider2','dots2','thumbs2',0)"></div>
+          <div class="dot" onclick="goToSlide('slider2','dots2','thumbs2',1)"></div>
+          <div class="dot" onclick="goToSlide('slider2','dots2','thumbs2',2)"></div>
+          <div class="dot" onclick="goToSlide('slider2','dots2','thumbs2',3)"></div>
+        </div>
+      </div>
+      <div class="thumbs-row" id="thumbs2">
+        <div class="thumb active" onclick="goToSlide('slider2','dots2','thumbs2',0)"><img src="img/lodu/1.jpg" alt="Thumb 1" /></div>
+        <div class="thumb" onclick="goToSlide('slider2','dots2','thumbs2',1)"><img src="img/lodu/5366112662405715110.jpg" alt="Thumb 2" /></div>
+        <div class="thumb" onclick="goToSlide('slider2','dots2','thumbs2',2)"><img src="img/lodu/5366112662405715115.jpg" alt="Thumb 3" /></div>
+        <div class="thumb" onclick="goToSlide('slider2','dots2','thumbs2',3)"><img src="img/lodu/5366112662405715116.jpg" alt="Thumb 4" /></div>
+      </div>
+      <div class="card-body">
+        <div class="card-tags">
+          <span class="card-tag">iOS</span>
+          <span class="card-tag">Android</span>
+          <span class="card-tag">Gaming</span>
+        </div>
+        <h2 class="card-title">IQLudo</h2>
+        <p class="card-desc">Social gaming platform — Chess, Ludo, Domino, Backgammon — with voice rooms, gifting system, diamond economy, and a full in-app store.</p>
+        <ul class="card-features">
+          <li>Online multiplayer games (Ludo · Chess · Domino)</li>
+          <li>Interactive voice rooms + gifts</li>
+          <li>Diamond economy &amp; agent system</li>
+          <li>Private audio infrastructure</li>
+        </ul>
+        <div class="card-footer">
+          <a href="https://drive.google.com/file/d/1jD254tpJY2uo7KpRX581a9lm32_DTJAi/view" target="_blank" class="view-link">
+            View Project
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    
+
+  </div>
+</section>
+
+<section class="section" id="websites">
+  <div class="section-header fade-up">
+    <div class="section-meta">
+      <div class="section-num">02 / Websites</div>
+      <div class="section-title">Web</div>
+    </div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="projects-grid">
+
+    <!-- CARD 3: Nefert Digital Menu -->
+    <div class="project-card fade-up" style="transition-delay: 200ms;">
+      <div class="card-glow"></div>
+      <div class="slider-wrap"
+           data-project="Nefert Menu"
+           data-images='[
+             "img/menu/Screenshot 2026-04-05 122401.png",
+             "img/menu/Screenshot 2026-04-05 122416.png",
+             "img/menu/Screenshot 2026-04-05 122425.png",
+           ]'
+           data-alts='["Nefert Hero","Best Seller Section","Drinks Menu","Main Dish Section"]'>
+        <div class="slider-track" id="slider3">
+          <div class="slide"><img src="img/menu/Screenshot 2026-04-05 122401.png" alt="Nefert Hero" /></div>
+          <div class="slide"><img src="img/menu/Screenshot 2026-04-05 122416.png" alt="Best Seller Section" /></div>
+          <div class="slide"><img src="img/menu/Screenshot 2026-04-05 122425.png" alt="Drinks Menu" /></div>
+        </div>
+        <div class="slider-expand-hint" onclick="openLightbox(this.closest('.slider-wrap'))">
+          <div class="expand-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3"/></svg>
+          </div>
+        </div>
+        <button class="slider-btn prev" onclick="event.stopPropagation(); slide('slider3','dots3','thumbs3',-1)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg></button>
+        <button class="slider-btn next" onclick="event.stopPropagation(); slide('slider3','dots3','thumbs3',1)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>
+        <div class="slider-dots" id="dots3">
+          <div class="dot active" onclick="goToSlide('slider3','dots3','thumbs3',0)"></div>
+          <div class="dot" onclick="goToSlide('slider3','dots3','thumbs3',1)"></div>
+          <div class="dot" onclick="goToSlide('slider3','dots3','thumbs3',2)"></div>
+          <div class="dot" onclick="goToSlide('slider3','dots3','thumbs3',3)"></div>
+        </div>
+      </div>
+      <div class="thumbs-row" id="thumbs3">
+        <div class="thumb active" onclick="goToSlide('slider3','dots3','thumbs3',0)"><img src="img/menu/Screenshot 2026-04-05 122401.png" alt="Thumb 1" /></div>
+        <div class="thumb" onclick="goToSlide('slider3','dots3','thumbs3',1)"><img src="img/menu/Screenshot 2026-04-05 122416.png" alt="Thumb 2" /></div>
+        <div class="thumb" onclick="goToSlide('slider3','dots3','thumbs3',2)"><img src="img/menu/Screenshot 2026-04-05 122425.png" alt="Thumb 3" /></div>
+      </div>
+      <div class="card-body">
+        <div class="card-tags">
+          <span class="card-tag">Web</span>
+          <span class="card-tag gold-tag">QR Menu</span>
+          <span class="card-tag">Mobile-First</span>
+        </div>
+        <h2 class="card-title">Nefert Digital Menu</h2>
+        <p class="card-desc">A responsive QR-code-accessible digital menu for Nefert, a modern Egyptian restaurant — replacing paper menus with a fast, elegant web experience.</p>
+        <ul class="card-features">
+          <li>Best Seller section to highlight popular items &amp; drive sales</li>
+          <li>Mobile-first layout optimized for diners at the table</li>
+          <li>Smooth category navigation: Drinks, Main Dishes &amp; Salads</li>
+          <li>Instant QR-code access — no app download required</li>
+        </ul>
+        <div class="card-footer">
+          <a href="https://mahmoudsamk.github.io/Nefert-menu/" target="_blank" class="view-link">
+            View Live
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+<section class="section" id="data-analysis">
+  <div class="section-header fade-up">
+    <div class="section-meta">
+      <div class="section-num">03 / Data Analysis</div>
+      <div class="section-title">Projects / Dashboards</div>
+    </div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="projects-grid">
+
+    <!-- Placeholder CARD: Sales Analytics Dashboard -->
+    <div class="project-card fade-up">
+      <div class="card-glow"></div>
+      <div class="slider-wrap"
+           data-project="Sales Analytics Dashboard"
+           data-images='[
+             "img\data analysis\start up analysis\Screenshot 2026-04-06 170719.png",
+             "img\data analysis\start up analysis\Screenshot 2026-04-07 090354.png",
+             "img\data analysis\start up analysis\Screenshot 2026-04-07 090416.png",
+             "img\data analysis\start up analysis\Screenshot 2026-04-07 090506.png",
+             "img\data analysis\start up analysis\Screenshot 2026-04-07 090725.png",
+             "img\data analysis\start up analysis\Screenshot 2026-04-07 090739.png",
+             "img\data analysis\start up analysis\Screenshot 2026-04-07 090751.png",
+             "img\data analysis\start up analysis\Screenshot 2026-04-07 090805.png",
+
+           ]'
+           data-alts='["Dashboard Overview","Sales Trends","Customer Insights"]'>
+        <div class="slider-track" id="slider4">
+          <div class="slide"><img src="img\data analysis\start up analysis\Screenshot 2026-04-06 170719.png" alt="Dashboard Overview" /></div>
+          <div class="slide"><img src="img\data analysis\start up analysis\Screenshot 2026-04-07 090354.png" alt="Sales Trends" /></div>
+          <div class="slide"><img src="img\data analysis\start up analysis\Screenshot 2026-04-07 090416.png" alt="Customer Insights" /></div>
+          <div class="slide"><img src="img\data analysis\start up analysis\Screenshot 2026-04-07 090506.png" alt="Sales Trends" /></div>
+          <div class="slide"><img src="img\data analysis\start up analysis\Screenshot 2026-04-07 090725.png" alt="Customer Insights" /></div>
+          <div class="slide"><img src="img\data analysis\start up analysis\Screenshot 2026-04-07 090739.png" alt="Sales Trends" /></div>
+          <div class="slide"><img src="img\data analysis\start up analysis\Screenshot 2026-04-07 090751.png" alt="Customer Insights" /></div>
+          <div class="slide"><img src="img\data analysis\start up analysis\Screenshot 2026-04-07 090805.png" alt="Sales Trends" /></div>
+        </div>
+        <div class="slider-expand-hint" onclick="openLightbox(this.closest('.slider-wrap'))">
+          <div class="expand-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3"/></svg>
+          </div>
+        </div>
+        <button class="slider-btn prev" onclick="event.stopPropagation(); slide('slider4','dots4','thumbs4',-1)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg></button>
+        <button class="slider-btn next" onclick="event.stopPropagation(); slide('slider4','dots4','thumbs4',1)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>
+        <div class="slider-dots" id="dots4">
+          <div class="dot active" onclick="goToSlide('slider4','dots4','thumbs4',0)"></div>
+          <div class="dot" onclick="goToSlide('slider4','dots4','thumbs4',1)"></div>
+          <div class="dot" onclick="goToSlide('slider4','dots4','thumbs4',2)"></div>
+        </div>
+      </div>
+      <div class="thumbs-row" id="thumbs4">
+        <div class="thumb active" onclick="goToSlide('slider4','dots4','thumbs4',0)"><img src="img/dashboard/dashboard1.png" alt="Thumb 1" /></div>
+        <div class="thumb" onclick="goToSlide('slider4','dots4','thumbs4',1)"><img src="img/dashboard/dashboard2.png" alt="Thumb 2" /></div>
+        <div class="thumb" onclick="goToSlide('slider4','dots4','thumbs4',2)"><img src="img/dashboard/dashboard3.png" alt="Thumb 3" /></div>
+      </div>
+      <div class="card-body">
+        <div class="card-tags">
+          <span class="card-tag">Python</span>
+          <span class="card-tag">Tableau</span>
+          <span class="card-tag gold-tag">Dashboard</span>
+        </div>
+        <h2 class="card-title">Sales Analytics Dashboard</h2>
+        <p class="card-desc">Interactive dashboard analyzing sales data with real-time metrics, trend visualizations, and customer segmentation insights.</p>
+        <ul class="card-features">
+          <li>Real-time sales tracking and forecasting</li>
+          <li>Customer behavior analysis</li>
+          <li>Interactive charts and filters</li>
+          <li>Data integration from multiple sources</li>
+        </ul>
+        <div class="card-footer">
+          <a href="#" class="view-link">
+            View Dashboard
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="about-strip" id="about">
+  <div class="fade-up">
+    <div class="about-label">Background</div>
+    <div class="about-text">
+      I bridge the gap between <em>complex engineering</em> and <em>beautiful design</em>.
+    </div>
+  </div>
+  <div class="skills-grid fade-up" style="transition-delay: 100ms;">
+    <div class="skill-item">
+      <div class="skill-name">Mobile Apps</div>
+      <div class="skill-sub">iOS & Android</div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-name">Web Platforms</div>
+      <div class="skill-sub">Full-Stack Arch</div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-name">Real-Time Systems</div>
+      <div class="skill-sub">Voice & Gaming</div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-name">Product Design</div>
+      <div class="skill-sub">UI/UX & Economy</div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-strip" id="contact">
+  <div class="fade-up">
+    <div class="contact-label">Let's Work Together</div>
+    <h2 class="contact-title">Got a <span>Project</span>?</h2>
+    <div class="contact-email">
+      Drop me an email at <a href="/cdn-cgi/l/email-protection#a7dec8d2d5e7c2cac6cecb89c4c8ca"><span class="__cf_email__" data-cfemail="d7aeb8a2a597b2bab6bebbf9b4b8ba">[email&#160;protected]</span></a>
+    </div>
+    <div class="contact-btns">
+      <a href="/cdn-cgi/l/email-protection#3a43554f487a5f575b535614595557" class="btn-primary">Get in Touch</a>
+      <a href="https://www.linkedin.com/in/mahmoudashrafsamak/" target="_blank" class="btn-outline">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div style="text-align: center; padding: 40px;">
+    <div class="footer-brand">[<span>M.SAMAK</span>]</div>
+    <div class="footer-copy">© 2026 Mahmoud Samak. All rights reserved.</div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
